@@ -8,6 +8,7 @@ import com.example.geoguess.databinding.ActivityHomePageBinding
 class HomePageActivity : AppCompatActivity() {
     //binding v domovskej obrazovke
     lateinit var binding: ActivityHomePageBinding
+    //dkjsacj
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
