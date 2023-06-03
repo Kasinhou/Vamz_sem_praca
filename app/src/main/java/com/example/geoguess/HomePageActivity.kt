@@ -3,6 +3,7 @@ package com.example.geoguess
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.geoguess.data.*
 import com.example.geoguess.databinding.ActivityHomePageBinding
 
@@ -34,10 +35,21 @@ class HomePageActivity : AppCompatActivity() {
         setContentView(binding.root)
         //setContentView(R.layout.activity_home_page)
         println(slovakia.toString())
+        println(slovakia.component2().component1())
+        //val skuska = slovakia.component10()
+        //binding.textViewName.text = skuska.toString()
+        Log.i("HomePageActivity", "ON CREATE")
 
         binding.buttonInfo.setOnClickListener{ goToInfo() }
         binding.buttonGuess.setOnClickListener { goToOptions() }
     }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("HomePageActivity", "ON START")
+    }
+
+    //mozno doplnit dalsie
 
     private fun goToOptions() {
         val Intent = Intent(this, OptionsActivity::class.java)
