@@ -42,6 +42,7 @@ class HomePageActivity : AppCompatActivity() {
 
         binding.buttonInfo.setOnClickListener{ goToInfo() }
         binding.buttonGuess.setOnClickListener { goToOptions() }
+
     }
 
     override fun onStart() {
