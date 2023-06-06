@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InfoActivity">
+    tools:context=".activities.InfoActivity">
 
     <EditText
         android:id="@+id/searchedCountry"
@@ -27,15 +27,13 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewInfo"
-        android:name="com.example.geoguess.CountryInfoFragment"
+        android:name="com.example.geoguess.activities.CountryInfoFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonSearch"
+        app:layout_constraintTop_toBottomOf="@id/searchedCountry"
         tools:layout="@layout/fragment_country_info" />
 
 

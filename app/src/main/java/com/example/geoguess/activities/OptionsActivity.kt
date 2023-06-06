@@ -1,9 +1,8 @@
-package com.example.geoguess
+package com.example.geoguess.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import com.example.geoguess.databinding.ActivityOptionsBinding
 
 class OptionsActivity : AppCompatActivity() {
