@@ -46,7 +46,7 @@ class CountryInfoViewModel : ViewModel() {
                 val listResult = CountryApi.retrofitService.getProperties()
                 _response.value = "SUCCESS: ${listResult.size} countries are here."
             } catch (e: Exception) {
-                _response.value = "FAILURE: ${e.message}"
+                _response.value = "FAILURE: ${e.message} \nIT IS NOT POSSIBLE TO PLAY!"
             }
         }
     }

@@ -42,7 +42,7 @@ class HomePageActivity : AppCompatActivity() {
 
         binding.buttonInfo.setOnClickListener{ goToInfo() }
         binding.buttonGuess.setOnClickListener { goToOptions() }
-
+        //CountryApi.retrofitService.getProperties().get(0).flags.alt.toString()
     }
 
     override fun onStart() {
