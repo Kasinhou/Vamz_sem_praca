@@ -21,8 +21,8 @@ private val retrofit = Retrofit.Builder()
 
 interface CountryApiService {
     @GET("all?fields=name,currencies,idd,capital,languages,latlng,borders,area,maps,population,fifa,timezones,continents,flags,coatOfArms")
-    fun getProperties():
-            Call<List<Country>>
+    suspend fun getProperties():
+            List<Country>
 }
 
 object CountryApi {

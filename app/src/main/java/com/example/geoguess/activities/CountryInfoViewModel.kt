@@ -3,8 +3,10 @@ package com.example.geoguess.activities
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.geoguess.data.Country
 import com.example.geoguess.data.CountryApi
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +27,7 @@ class CountryInfoViewModel : ViewModel() {
     }
 
     private fun getCountriesProperties() {
-        _response.value = "Tuto sa to zobraziii"
+        /*_response.value = "Tuto sa to zobraziii"
         CountryApi.retrofitService.getProperties().enqueue(
             object: Callback<List<Country>> {
                 override fun onResponse(call: Call<List<Country>>, response: Response<List<Country>>) {
@@ -38,6 +40,14 @@ class CountryInfoViewModel : ViewModel() {
                 }
 
             }
-        )
+        )*/
+        viewModelScope.launch {
+            try {
+                val listResult = CountryApi.retrofitService.getProperties()
+                _response.value = "SUCCESS: ${listResult.size} countries are here."
+            } catch (e: Exception) {
+                _response.value = "FAILURE: ${e.message}"
+            }
+        }
     }
 }
