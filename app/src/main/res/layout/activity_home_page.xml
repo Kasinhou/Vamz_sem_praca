@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.HomePageActivity">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,20 +35,21 @@
         android:layout_height="wrap_content"
         android:text="INFO"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/fragmentContainerViewAPIInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGuess" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonGuess" />-->
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerViewAPIInfo"
+<androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mainFragmentContainerView"
         android:name="com.example.geoguess.activities.CountryInfoFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonInfo"
         tools:layout="@layout/fragment_country_info"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

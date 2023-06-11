@@ -1,17 +1,17 @@
 package com.example.geoguess.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.geoguess.data.*
+import androidx.fragment.app.Fragment
+import com.example.geoguess.R
 import com.example.geoguess.databinding.ActivityHomePageBinding
 
 class HomePageActivity : AppCompatActivity() {
     //binding v domovskej obrazovke
-    lateinit var binding: ActivityHomePageBinding
+    private lateinit var binding: ActivityHomePageBinding
 
-    private val flags = Flags("https://flagcdn.com/w320/sk.png","https://flagcdn.com/sk.svg","The flag of Slovakia is composed of three equal horizontal bands of white, blue and red. The coat of arms of Slovakia is superimposed at the center of the field slightly towards the hoist side.")
+    /*private val flags = Flags("https://flagcdn.com/w320/sk.png","https://flagcdn.com/sk.svg","The flag of Slovakia is composed of three equal horizontal bands of white, blue and red. The coat of arms of Slovakia is superimposed at the center of the field slightly towards the hoist side.")
     private val coa = CoatOfArms("https://mainfacts.com/media/images/coats_of_arms/sk.png","https://mainfacts.com/media/images/coats_of_arms/sk.svg")
     private val nam = Name("Slovakia","Slovak Republic",mapOf("slk" to NativeName("Slovenská republika", "Slovensko")))
     private val curr = mapOf("EUR" to Currency("Euro", "€"))
@@ -26,7 +26,7 @@ class HomePageActivity : AppCompatActivity() {
     private val f = "SVK"
     private val t = listOf("UTC+01:00")
     private val con = listOf("Europe")
-    private val slovakia = Country(flags, coa, nam, curr, i, cap, lan, ll, border, area, maps, pop, f, t, con)
+    private val slovakia = Country(flags, coa, nam, curr, i, cap, lan, ll, border, area, maps, pop, f, t, con)*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,15 +34,16 @@ class HomePageActivity : AppCompatActivity() {
         binding = ActivityHomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //setContentView(R.layout.activity_home_page)
-        println(slovakia.toString())
-        println(slovakia.component2().component1())
+        /*println(slovakia.toString())
+        println(slovakia.component2().component1())*/
         //val skuska = slovakia.component10()
         //binding.textViewName.text = skuska.toString()
         Log.i("HomePageActivity", "ON CREATE")
 
-        binding.buttonInfo.setOnClickListener{ goToInfo() }
-        binding.buttonGuess.setOnClickListener { goToOptions() }
+        //binding.buttonInfo.setOnClickListener{ goToInfo(WikiFragment()) }
+        //binding.buttonGuess.setOnClickListener { goToQuiz(GuessingFragment()) }
         //CountryApi.retrofitService.getProperties().get(0).flags.alt.toString()
+
     }
 
     override fun onStart() {
@@ -52,13 +53,21 @@ class HomePageActivity : AppCompatActivity() {
 
     //mozno doplnit dalsie
 
-    private fun goToOptions() {
-        val Intent = Intent(this, OptionsActivity::class.java)
-        startActivity(Intent)
+    /*private fun goToQuiz(newFragment : Fragment) {
+        //val Intent = Intent(this, QuizActivity::class.java)
+        //startActivity(Intent)
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
+        fragmentTransaction.commit()
     }
 
-    private fun goToInfo() {
-        val Intent = Intent(this, InfoActivity::class.java)
-        startActivity(Intent)
-    }
+    private fun goToInfo(newFragment: Fragment) {
+        //val Intent = Intent(this, InfoActivity::class.java)
+        //startActivity(Intent)
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
+        fragmentTransaction.commit()
+    }*/
 }

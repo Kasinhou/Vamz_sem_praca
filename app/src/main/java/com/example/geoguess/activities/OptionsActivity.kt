@@ -14,13 +14,8 @@ class OptionsActivity : AppCompatActivity() {
         setContentView(binding.root)
         //setContentView(R.layout.activity_options)
 
-        binding.buttonCapital.setOnClickListener{ goToQuiz() } // parameter nieco cim odlisim capital a country
-        binding.buttonCountry.setOnClickListener { goToQuiz() }
+        //binding.buttonCapital.setOnClickListener{ goToQuiz() } // parameter nieco cim odlisim capital a country
+        //binding.buttonCountry.setOnClickListener { goToQuiz() }
         //glide kniznica na obrazky
-    }
-
-    private fun goToQuiz() {
-        val Intent = Intent(this, QuizActivity::class.java)
-        startActivity(Intent)
     }
 }

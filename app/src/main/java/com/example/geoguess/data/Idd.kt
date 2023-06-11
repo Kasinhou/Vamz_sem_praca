@@ -1,3 +1,12 @@
 package com.example.geoguess.data
 
-data class Idd(val root : String, val suffixes : List<String>)
+data class Idd(val root : String, val suffixes : List<String>) {
+    fun getIdd(): String {
+        var str = "root $root, suffixes("
+        for (s in suffixes) {
+            str += "$s "
+        }
+        str += ")\n"
+        return str
+    }
+}
