@@ -53,9 +53,11 @@ class CountryInfoViewModel : ViewModel() {
         } else {
             country
         }*/
-        return _listOfCountries.value?.find { it.name.official == inputCountry }
-            ?: _listOfCountries.value?.get(0)
+        return _listOfCountries.value?.find { it.name.common.lowercase() == inputCountry }
     }
 
+    fun removeCountry(country: String) {
+        _countries.find { it.name.common.lowercase() == country }
+    }
 
 }

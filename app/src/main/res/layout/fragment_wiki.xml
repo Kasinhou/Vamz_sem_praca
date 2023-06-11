@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="Country"
-            android:inputType="textAutoComplete"
+            android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,16 +31,77 @@
             android:text="SEARCH"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-             />
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.countries.toString()}"
             app:layout_constraintTop_toBottomOf="@id/searchedCountry"
             app:layout_constraintBottom_toTopOf="@id/buttonSearch"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+        <TextView
+            android:id="@+id/tvCountryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchedCountry" />
+
+        <ImageView
+            android:id="@+id/ivFlag"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toStartOf="@+id/ivCoA"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCountryName"
+            app:srcCompat="@android:drawable/ic_menu_gallery"/>
+
+        <ImageView
+            android:id="@+id/ivCoA"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ivFlag"
+            app:layout_constraintTop_toBottomOf="@+id/tvCountryName"
+            app:srcCompat="@android:drawable/ic_menu_gallery"/>
+
+        <TextView
+            android:id="@+id/tvInfoAboutCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivCoA" />
+
+        <!--<ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ivFlag"
+            app:imageUrl="https://flagcdn.com/w320/jo.png"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCountryName"
+            app:layout_constraintEnd_toStartOf="@id/ivCoA"
+            app:srcCompat="@android:drawable/ic_menu_gallery"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ivCoA"
+            app:imageUrl="https://flagcdn.com/w320/jo.png"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCountryName"
+            app:layout_constraintStart_toEndOf="@id/ivFlag"
+            android:scaleType="centerCrop"
+        />-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

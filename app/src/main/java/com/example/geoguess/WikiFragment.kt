@@ -5,6 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
+import com.example.geoguess.activities.CountryInfoViewModel
+import com.example.geoguess.databinding.FragmentCountryInfoBinding
+import com.example.geoguess.databinding.FragmentWikiBinding
 
 /*// TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +22,34 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class WikiFragment : Fragment(R.layout.fragment_wiki) {
+    private lateinit var binding: FragmentWikiBinding
+
+    private lateinit var sharedViewModel: CountryInfoViewModel
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentWikiBinding.bind(view)
+
+        sharedViewModel = ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
+        binding.buttonSearch.setOnClickListener { spracuj() }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+       // requireActivity().setContentView(R.layout.fragment_wiki)
+
+        //requireActivity().setContentView(binding.root)
+        //binding.buttonSearch.setOnClickListener { spracuj() }
+
+    }
+
+    private fun spracuj() {
+        val text = binding.searchedCountry.text.toString().lowercase()
+        binding.tvCountryName.text = text.uppercase()
+        binding.tvInfoAboutCountry.text = sharedViewModel.getCountry(text)?.showInfo()
+        //binding.tvInfoAboutCountry.text = sharedViewModel.listOfCountries.value?.get(100)?.showInfo()
+    }
+
     /*// TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null

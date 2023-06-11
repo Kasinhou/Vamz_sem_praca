@@ -10,14 +10,17 @@ import com.example.geoguess.GuessingFragment
 import com.example.geoguess.R
 import com.example.geoguess.WikiFragment
 import com.example.geoguess.databinding.FragmentCountryInfoBinding
+import androidx.fragment.app.activityViewModels
 
 class CountryInfoFragment : Fragment() {
+
+    //private val sharedViewModel: CountryInfoViewModel by activityViewModels()
 
     /**
      * Lazily initialize our [CountryInfoViewModel].
      */
-    private val viewModel: CountryInfoViewModel by lazy {
-        ViewModelProvider(this).get(CountryInfoViewModel::class.java)
+    private val sharedViewModel: CountryInfoViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
     }
 
    /* companion object {
@@ -39,7 +42,7 @@ class CountryInfoFragment : Fragment() {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        viewModel.getCountriesProperties()
+        sharedViewModel.getCountriesProperties()
         binding = FragmentCountryInfoBinding.inflate(inflater)
         //val binding = FragmentCountryInfoBinding.inflate(inflater)
 
@@ -47,9 +50,9 @@ class CountryInfoFragment : Fragment() {
         binding.lifecycleOwner = this
 
         // Giving the binding access to the CountryInfoViewModel
-        binding.viewModel = viewModel
+        binding.viewModel = sharedViewModel
 
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
         binding.buttonGuess.setOnClickListener { goToQuiz(GuessingFragment()) }
         binding.buttonInfo.setOnClickListener { goToInfo(WikiFragment()) }
         return binding.root
