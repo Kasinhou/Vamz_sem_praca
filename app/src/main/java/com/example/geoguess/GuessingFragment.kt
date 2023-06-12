@@ -67,6 +67,8 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
             binding.tvCorrectCount.text = "$count/${sharedViewModel.listOfCountries.value?.size}"
             guessedCountries.add(guess)
             binding.searchedItem.setText("")
+            if (count == sharedViewModel.listOfCountries.value?.size)
+                endOfQuiz()
         } else {
             binding.tvCorrect.setBackgroundColor(Color.WHITE)
             binding.tvWrong.setBackgroundColor(Color.RED)

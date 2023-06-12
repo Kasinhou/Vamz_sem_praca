@@ -1,6 +1,10 @@
 package com.example.geoguess
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +14,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.geoguess.activities.CountryInfoViewModel
 import com.example.geoguess.databinding.FragmentCountryInfoBinding
 import com.example.geoguess.databinding.FragmentWikiBinding
+import java.util.concurrent.Executors
+import com.bumptech.glide.Glide
 
-/*// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-*//**
+/**
  * A simple [Fragment] subclass.
  * Use the [WikiFragment.newInstance] factory method to
  * create an instance of this fragment.
@@ -44,25 +45,55 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     }
 
     private fun show() {
-        val text = binding.searchedCountry.text.toString().lowercase()
-        binding.tvCountryName.text = text.uppercase()
-        binding.tvInfoAboutCountry.text = sharedViewModel.getCountry(text)?.showInfo()
+        val text = binding.searchedCountry.text.toString().lowercase().trimEnd()
+
+        if (sharedViewModel.getCountry(text) != null) {
+            showImages(text)
+            binding.tvCountryName.text = text.uppercase()
+            binding.tvInfoAboutCountry.text = sharedViewModel.getCountry(text)?.showInfo()
+        }
+
         //binding.tvInfoAboutCountry.text = sharedViewModel.listOfCountries.value?.get(100)?.showInfo()
     }
 
-    /*// TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private fun showImages(name: String) {
+        val flagUrl = sharedViewModel.getCountry(name)?.flags?.png.toString()
+        val coaUrl = sharedViewModel.getCountry(name)?.coatOfArms?.png.toString()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        Glide.with(this)
+            .load(flagUrl)
+            .into(binding.ivFlag)
+
+        Glide.with(this)
+            .load(coaUrl)
+            .into(binding.ivCoA)
+        /*val executor = Executors.newSingleThreadExecutor()
+        val handler = Handler(Looper.getMainLooper())
+        var image: Bitmap? = null
+        var image2: Bitmap? = null
+        executor.execute {
+            val imageUrl = sharedViewModel.getCountry(name)?.flags?.png.toString()
+            val imageUrl2 = sharedViewModel.getCountry(name)?.coatOfArms?.png.toString()
+            try {
+                val i = java.net.URL(imageUrl).openStream()
+                image = BitmapFactory.decodeStream(i)
+
+                val i2 = java.net.URL(imageUrl2).openStream()
+                image2 = BitmapFactory.decodeStream(i2)
+                handler.post{
+                    binding.ivFlag.setImageBitmap(image)
+                    binding.ivCoA.setImageBitmap(image2)
+                }
+
+            } catch (e: Exception) {
+                println(e.message)
+            }
+        }*/
     }
 
-    override fun onCreateView(
+
+
+    /*override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
