@@ -18,12 +18,28 @@
 
     <Button
         android:id="@+id/buttonTry"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TRY"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCorrectCount" />
+
+    <Button
+        android:id="@+id/buttonEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="END QUIZ"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchedItem" />
+        app:layout_constraintTop_toBottomOf="@id/tvCorrectCount" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START QUIZ"
+        app:layout_constraintStart_toEndOf="@id/buttonEnd"
+        app:layout_constraintEnd_toStartOf="@id/buttonTry"
+        app:layout_constraintTop_toBottomOf="@id/tvCorrectCount" />
 
     <TextView
         android:id="@+id/tvCorrect"
@@ -35,7 +51,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tvWrong"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTry" />
+        app:layout_constraintTop_toBottomOf="@+id/searchedItem" />
 
     <TextView
         android:id="@+id/tvWrong"
@@ -47,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tvCorrect"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTry" />
+        app:layout_constraintTop_toBottomOf="@+id/searchedItem" />
 
     <TextView
         android:id="@+id/tvCorrectCount"
@@ -59,5 +75,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCorrect" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTime"
+        app:layout_constraintTop_toBottomOf="@id/buttonStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

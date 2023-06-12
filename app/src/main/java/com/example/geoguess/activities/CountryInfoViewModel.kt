@@ -21,10 +21,10 @@ class CountryInfoViewModel : ViewModel() {
     val listOfCountries: LiveData<List<Country>>
         get() = _listOfCountries
 
-    private var _countries : List<Country> = listOf()
+    /*private var _countries : List<Country> = listOf()
 
     val countries : List<Country>
-        get() = _countries
+        get() = _countries*/
 
 
     /**
@@ -38,7 +38,7 @@ class CountryInfoViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 _listOfCountries.value = CountryApi.retrofitService.getProperties()
-                _countries = CountryApi.retrofitService.getProperties()
+                //_countries = CountryApi.retrofitService.getProperties()
                 _response.value = "SUCCESS: Countries are here."
             } catch (e: Exception) {
                 _response.value = "FAILURE: ${e.message} \nIT IS NOT POSSIBLE TO PLAY!"
@@ -56,8 +56,12 @@ class CountryInfoViewModel : ViewModel() {
         return _listOfCountries.value?.find { it.name.common.lowercase() == inputCountry }
     }
 
-    fun removeCountry(country: String) {
+    /*fun removeCountry(country: String) {
         _countries.find { it.name.common.lowercase() == country }
-    }
+    }*/
+
+    /*fun getList(): List<Country> {
+        return countries
+    }*/
 
 }

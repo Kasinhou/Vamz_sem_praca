@@ -31,7 +31,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
         binding = FragmentWikiBinding.bind(view)
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
-        binding.buttonSearch.setOnClickListener { spracuj() }
+        binding.buttonSearch.setOnClickListener { show() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
 
     }
 
-    private fun spracuj() {
+    private fun show() {
         val text = binding.searchedCountry.text.toString().lowercase()
         binding.tvCountryName.text = text.uppercase()
         binding.tvInfoAboutCountry.text = sharedViewModel.getCountry(text)?.showInfo()
