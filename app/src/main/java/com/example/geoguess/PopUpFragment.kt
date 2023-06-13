@@ -20,14 +20,14 @@ class PopUpFragment : DialogFragment() {
 
     private var minutes: Long = 0
     private var seconds: Long = 0
-    private var exit: Boolean = false
+    private var count: Int = 0
 
     companion object {
-        fun instance(min: Long, sec: Long, exit: Boolean) : PopUpFragment {
+        fun instance(min: Long, sec: Long, count: Int) : PopUpFragment {
             val newFragment = PopUpFragment()
             newFragment.minutes = min
             newFragment.seconds = sec
-            newFragment.exit = exit
+            newFragment.count = count
             return newFragment
         }
     }
@@ -52,7 +52,7 @@ class PopUpFragment : DialogFragment() {
         if (binding.nameToSave.text == null)
             return
 
-        //dokoncit ukladanie
+        Database(requireContext()).insertN(binding.nameToSave.text.toString(), minutes.toInt(), seconds.toInt(), count)
         dismiss()
     }
 }

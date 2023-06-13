@@ -54,6 +54,7 @@ class CountryInfoFragment : Fragment() {
         binding.buttonGuess.setOnClickListener { goToQuiz(GuessingFragment()) }
         binding.buttonInfo.setOnClickListener { goToInfo(WikiFragment()) }
         binding.btnShowEverything.setOnClickListener { showEveryCountry(ReviewFragment()) }
+        binding.btnRank.setOnClickListener { goToRankings(RankingFragment()) }
         return binding.root
     }
 
@@ -69,6 +70,14 @@ class CountryInfoFragment : Fragment() {
     }
 
     private fun showEveryCountry(newFragment: Fragment) {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+    }
+
+    private fun goToRankings(newFragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)

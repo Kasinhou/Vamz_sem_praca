@@ -22,11 +22,6 @@ class CountryInfoViewModel : ViewModel() {
     val listOfCountries: LiveData<List<Country>>
         get() = _listOfCountries
 
-    /*private var _countries : List<Country> = listOf()
-
-    val countries : List<Country>
-        get() = _countries*/
-
 
     /**
      * Call getCountriesProperties() on init so we can display status immediately.

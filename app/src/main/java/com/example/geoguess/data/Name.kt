@@ -5,7 +5,7 @@ data class Name(val common : String, val official : String, val nativeName : Map
         var names = ""
         //names += nativeName.keys.first() + "- " + nativeName.values.first().getNames()
         for ((key, value) in nativeName) {
-            names += (" ▹" + key + "-> " + value.getNames() + "\n")
+            names += (" ▹ " + key + "-> " + value.getNames() + "\n")
         }
         return names
     }

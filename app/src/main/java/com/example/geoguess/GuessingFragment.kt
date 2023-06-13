@@ -111,31 +111,28 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
             .setTitle("CONGRATS!")
             .setMessage("It took you $min minutes and $sec seconds to guess $count countries.")
             .setCancelable(false)
-            .setNegativeButton("EXIT") { _, _ -> goToHomePage(CountryInfoFragment(), min, sec, true) }
-            .setPositiveButton("TRY AGAIN") {_, _ -> tryAgain(min, sec, false)}
+            .setNegativeButton("EXIT") { _, _ -> goToHomePage(CountryInfoFragment(), min, sec) }
+            .setPositiveButton("TRY AGAIN") {_, _ -> tryAgain(min, sec)}
             .setBackground(ContextCompat.getDrawable(requireActivity(), R.drawable.dialog))
             .show()
 
     }
 
-    private fun tryAgain(min: Long, sec: Long, exit: Boolean) {
-        saveScore(min, sec, exit)
+    private fun tryAgain(min: Long, sec: Long) {
+        saveScore(min, sec)
         startQuiz()
     }
 
-    private fun goToHomePage(newFragment: Fragment, min: Long, sec: Long, exit: Boolean) {
-        saveScore(min, sec, exit)
+    private fun goToHomePage(newFragment: Fragment, min: Long, sec: Long) {
+        saveScore(min, sec)
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
         fragmentTransaction.commit()
     }
 
-    private fun saveScore(min: Long, sec: Long, exit: Boolean) {
-        //val rank = requireActivity().getSharedPreferences("overallRanking", Context.MODE_PRIVATE)
-        //val editor = rank.edit()
-
-        val popUpWindow = PopUpFragment.instance(min, sec, exit)
+    private fun saveScore(min: Long, sec: Long) {
+        val popUpWindow = PopUpFragment.instance(min, sec, count)
         popUpWindow.show((activity as AppCompatActivity).supportFragmentManager, "Pop Up Window")
     }
 

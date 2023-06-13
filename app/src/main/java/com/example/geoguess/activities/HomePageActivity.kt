@@ -4,13 +4,11 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import androidx.fragment.app.Fragment
-import com.example.geoguess.R
+
 import com.example.geoguess.databinding.ActivityHomePageBinding
 
 class HomePageActivity : AppCompatActivity() {
-    //binding v domovskej obrazovke
+    //binding
     private lateinit var binding: ActivityHomePageBinding
 
     /*private val flags = Flags("https://flagcdn.com/w320/sk.png","https://flagcdn.com/sk.svg","The flag of Slovakia is composed of three equal horizontal bands of white, blue and red. The coat of arms of Slovakia is superimposed at the center of the field slightly towards the hoist side.")
@@ -51,24 +49,4 @@ class HomePageActivity : AppCompatActivity() {
         super.onStart()
         Log.i("HomePageActivity", "ON START")
     }
-
-    //mozno doplnit dalsie
-
-    /*private fun goToQuiz(newFragment : Fragment) {
-        //val Intent = Intent(this, QuizActivity::class.java)
-        //startActivity(Intent)
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
-        fragmentTransaction.commit()
-    }
-
-    private fun goToInfo(newFragment: Fragment) {
-        //val Intent = Intent(this, InfoActivity::class.java)
-        //startActivity(Intent)
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
-        fragmentTransaction.commit()
-    }*/
 }

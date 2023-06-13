@@ -25,7 +25,7 @@ data class Country(val flags : Flags, val coatOfArms : CoatOfArms, val name : Na
 
         var curr = ""
         for ((key, value) in currencies) {
-            curr += (" ▹${value.getCurrency()} $key\n")
+            curr += (" ▹ ${value.getCurrency()} $key\n")
         }
 
         var zones = ""
