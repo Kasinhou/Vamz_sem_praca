@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/light_blue">
 
-    <data>
+    <!--<data>
     <variable
         name="viewModel"
         type="com.example.geoguess.activities.CountryInfoViewModel" />
-    </data>
+    </data>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".WikiFragment">
 
         <EditText
@@ -42,9 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SEARCH"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/buttonClearInfo"
+            app:layout_constraintBottom_toTopOf="@id/ivCoA"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tvCountryName"
@@ -52,7 +54,7 @@
             android:layout_height="wrap_content"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/buttonSearch"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchedCountry" />
 
@@ -85,27 +87,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivCoA" />
 
-        <!--<ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/ivFlag"
-            app:imageUrl="https://flagcdn.com/w320/jo.png"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCountryName"
-            app:layout_constraintEnd_toStartOf="@id/ivCoA"
-            app:srcCompat="@android:drawable/ic_menu_gallery"
-            />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/ivCoA"
-            app:imageUrl="https://flagcdn.com/w320/jo.png"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCountryName"
-            app:layout_constraintStart_toEndOf="@id/ivFlag"
-            android:scaleType="centerCrop"
-        />-->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</ScrollView>

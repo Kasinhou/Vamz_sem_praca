@@ -52,7 +52,7 @@ class PopUpFragment : DialogFragment() {
         if (binding.nameToSave.text == null)
             return
 
-
+        //dokoncit ukladanie
         dismiss()
     }
 }
