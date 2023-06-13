@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
     android:background="#01091B"
     tools:context=".RankingFragment">
 
@@ -13,30 +12,62 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/tvFirstRowRanking"
-            android:text="RANKING BY AVERAGE TIME TO GUESS ONE COUNTRY"
-            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OVERALL RANKING"
             android:textColor="@color/white"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:typeface="serif"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvRanking"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvRanking"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
             android:id="@+id/tvRanking"
-            android:textSize="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:typeface="serif"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnMaxCount" />
+
+        <Button
+            android:id="@+id/btnMaxCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/nocolor"
+            android:text="Max guessed"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:typeface="serif"
+            app:layout_constraintEnd_toStartOf="@+id/btnAvgGuessed"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFirstRowRanking" />
+
+        <Button
+            android:id="@+id/btnAvgGuessed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/nocolor"
+            android:text="Average guessed"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:typeface="serif"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvFirstRowRanking"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnMaxCount"
+            app:layout_constraintTop_toBottomOf="@id/tvFirstRowRanking" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

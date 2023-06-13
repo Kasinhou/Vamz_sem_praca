@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
+import com.example.geoguess.data.Score
 
 const val DB_NAME = "DatabaseRanking"
 const val TABLE_NAME = "Table_info"
@@ -36,5 +37,30 @@ class Database(var context: Context): SQLiteOpenHelper(context, DB_NAME, null, 1
             Toast.makeText(context, "Insert was unsuccessful.", Toast.LENGTH_SHORT).show()
         else
             Toast.makeText(context, "Check ranking for more info.", Toast.LENGTH_SHORT).show()
+
+        database.close()
+    }
+
+    fun load() : MutableList<Score> {
+        var listOfScores : MutableList<Score> = mutableListOf()
+        val database = readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME"
+        val row = database.rawQuery(query, null)
+        if (row.moveToFirst()) {
+            do {
+                var score = Score(
+                    row.getString(0),
+                    row.getString(1).toInt(),
+                    row.getString(2).toInt(),
+                    row.getString(3).toInt()
+                )
+                listOfScores.add(score)
+
+            } while (row.moveToNext())
+        }
+
+
+        database.close()
+        return listOfScores
     }
 }
