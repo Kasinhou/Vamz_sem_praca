@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.geoguess.activities.CountryInfoViewModel
 import com.example.geoguess.databinding.FragmentCountryInfoBinding
@@ -35,6 +36,17 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
 
         //sharedViewModel = ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
         binding.buttonSearch.setOnClickListener { show() }
+        binding.buttonClearInfo.setOnClickListener {
+            binding.searchedCountry.setText("")
+            clearInfo()
+        }
+    }
+
+    private fun clearInfo() {
+        binding.tvCountryName.text = ""
+        binding.tvInfoAboutCountry.text = ""
+        binding.ivCoA.visibility = View.GONE
+        binding.ivFlag.visibility = View.GONE
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -59,6 +71,9 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
             showImages(text)
             binding.tvCountryName.text = text.uppercase()
             binding.tvInfoAboutCountry.text = sharedViewModel.getCountry(text)?.showInfo()
+        } else {
+            Toast.makeText(requireContext(), "Wrong name of country.\nTry again.", Toast.LENGTH_LONG).show()
+            clearInfo()
         }
 
         //binding.tvInfoAboutCountry.text = sharedViewModel.listOfCountries.value?.get(100)?.showInfo()
@@ -67,6 +82,8 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     private fun showImages(name: String) {
         val flagUrl = sharedViewModel.getCountry(name)?.flags?.png.toString()
         val coaUrl = sharedViewModel.getCountry(name)?.coatOfArms?.png.toString()
+        binding.ivCoA.visibility = View.VISIBLE
+        binding.ivFlag.visibility = View.VISIBLE
 
         Glide.with(this)
             .load(flagUrl)
