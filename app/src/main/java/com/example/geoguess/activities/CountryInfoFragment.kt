@@ -7,12 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.geoguess.GuessingFragment
-import com.example.geoguess.R
-import com.example.geoguess.WikiFragment
 import com.example.geoguess.databinding.FragmentCountryInfoBinding
 import com.bumptech.glide.Glide
-import com.example.geoguess.Constants
+import com.example.geoguess.*
 
 class CountryInfoFragment : Fragment() {
 
@@ -56,6 +53,7 @@ class CountryInfoFragment : Fragment() {
 
         binding.buttonGuess.setOnClickListener { goToQuiz(GuessingFragment()) }
         binding.buttonInfo.setOnClickListener { goToInfo(WikiFragment()) }
+        binding.btnShowEverything.setOnClickListener { showEveryCountry(ReviewFragment()) }
         return binding.root
     }
 
@@ -68,6 +66,14 @@ class CountryInfoFragment : Fragment() {
         Glide.with(this)
             .load(Constants.BACKGROUND_INFO_FRAGMENT)
             .into(binding.backgroundMap)
+    }
+
+    private fun showEveryCountry(newFragment: Fragment) {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     private fun goToInfo(newFragment: Fragment) {

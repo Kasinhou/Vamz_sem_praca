@@ -71,6 +71,36 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnShowEverything"
+            android:text="ALL"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:background="@color/nocolor"
+            android:layout_marginBottom="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/buttonGuess"
+            app:layout_constraintEnd_toStartOf="@id/btnRank"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnRank"
+            android:text="RANKING"
+            android:textSize="30dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:typeface="serif"
+            android:background="@color/nocolor"
+            android:layout_marginBottom="20sp"
+            app:layout_constraintStart_toEndOf="@id/btnShowEverything"
+            app:layout_constraintBottom_toTopOf="@id/buttonInfo"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <TextView
             android:id="@+id/apiResponse"
             android:layout_width="wrap_content"

@@ -72,7 +72,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
             binding.tvCountryName.text = text.uppercase()
             binding.tvInfoAboutCountry.text = sharedViewModel.getCountry(text)?.showInfo()
         } else {
-            Toast.makeText(requireContext(), "Wrong name of country.\nTry again.", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Wrong name of country.\nTry again.", Toast.LENGTH_SHORT).show()
             clearInfo()
         }
 
