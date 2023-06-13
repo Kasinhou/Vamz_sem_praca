@@ -2,6 +2,7 @@ package com.example.geoguess.activities
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.example.geoguess.R
 import com.example.geoguess.WikiFragment
 import com.example.geoguess.databinding.FragmentCountryInfoBinding
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 
 class CountryInfoFragment : Fragment() {
 
@@ -43,6 +45,7 @@ class CountryInfoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         sharedViewModel.getCountriesProperties()
+        Log.i("CountryInfoFragment", "CountryInfoFragment created/")
         binding = FragmentCountryInfoBinding.inflate(inflater)
         //val binding = FragmentCountryInfoBinding.inflate(inflater)
 
@@ -53,9 +56,22 @@ class CountryInfoFragment : Fragment() {
         binding.viewModel = sharedViewModel
 
         //setHasOptionsMenu(true)
+        background()
+
         binding.buttonGuess.setOnClickListener { goToQuiz(GuessingFragment()) }
         binding.buttonInfo.setOnClickListener { goToInfo(WikiFragment()) }
         return binding.root
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("CountryInfoFragment", "CountryInfoFragment destroyed!")
+    }
+
+    private fun background() {
+        Glide.with(this)
+            .load("https://e0.pxfuel.com/wallpapers/427/996/desktop-wallpaper-world-map-iphone-x-map-abstract.jpg")
+            .into(binding.backgroundMap)
     }
 
     private fun goToInfo(newFragment: Fragment) {

@@ -1,5 +1,6 @@
 package com.example.geoguess.activities
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,16 +31,22 @@ class CountryInfoViewModel : ViewModel() {
     /**
      * Call getCountriesProperties() on init so we can display status immediately.
      */
-    //init {
+    init {
         //getCountriesProperties()
-   // }
+        Log.i("COUNTRYINFOVIEWMODEL", "CountryInfoViewModel created!")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.i("CountryInfoViewModel", "CountryInfoViewModel destroyed!")
+    }
 
     fun getCountriesProperties() {
         viewModelScope.launch {
             try {
                 _listOfCountries.value = CountryApi.retrofitService.getProperties()
                 //_countries = CountryApi.retrofitService.getProperties()
-                _response.value = "SUCCESS: Countries are here."
+                _response.value = "EVERYTHING IS OK :)"
             } catch (e: Exception) {
                 _response.value = "FAILURE: ${e.message} \nIT IS NOT POSSIBLE TO PLAY!"
             }

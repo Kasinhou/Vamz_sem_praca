@@ -62,33 +62,16 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
 
         Glide.with(this)
             .load(flagUrl)
+            .placeholder(R.drawable.loading_animation)
+            .error(R.drawable.ic_broken_image)
             .into(binding.ivFlag)
 
         Glide.with(this)
             .load(coaUrl)
+            .placeholder(R.drawable.loading_animation)
+            .error(R.drawable.ic_broken_image)
             .into(binding.ivCoA)
-        /*val executor = Executors.newSingleThreadExecutor()
-        val handler = Handler(Looper.getMainLooper())
-        var image: Bitmap? = null
-        var image2: Bitmap? = null
-        executor.execute {
-            val imageUrl = sharedViewModel.getCountry(name)?.flags?.png.toString()
-            val imageUrl2 = sharedViewModel.getCountry(name)?.coatOfArms?.png.toString()
-            try {
-                val i = java.net.URL(imageUrl).openStream()
-                image = BitmapFactory.decodeStream(i)
 
-                val i2 = java.net.URL(imageUrl2).openStream()
-                image2 = BitmapFactory.decodeStream(i2)
-                handler.post{
-                    binding.ivFlag.setImageBitmap(image)
-                    binding.ivCoA.setImageBitmap(image2)
-                }
-
-            } catch (e: Exception) {
-                println(e.message)
-            }
-        }*/
     }
 
 

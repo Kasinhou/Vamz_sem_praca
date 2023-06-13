@@ -25,7 +25,7 @@ data class Country(val flags : Flags, val coatOfArms : CoatOfArms, val name : Na
 
         var curr = ""
         for ((key, value) in currencies) {
-            curr += ("$key: ${value.getCurrency()}\n")
+            curr += (" ${value.getCurrency()} $key\n")
         }
 
         var zones = ""
@@ -38,9 +38,9 @@ data class Country(val flags : Flags, val coatOfArms : CoatOfArms, val name : Na
             conts += ("$c  ")
         }
 
-        return "OFFICIAL NAME: ${name.official}\nNATIVE NAME: ${name.getNativeNames()}CAPITALS: $capitals\n" +
-                "COUNTRY CODE: $fifa\nPOPULATION: ${population.toString()}\nAREA: ${area.toString()}\nBORDERS: $bor\nLANGUAGES: $lang\n" +
-                "CURRENCIES: ${curr}LATITUDE AND LONGITUDE: ${latlng[0].toString()}, ${latlng[1].toString()}\nIDD: ${idd.getIdd()}TIMEZONES: $zones\nCONTINENTS: $conts"
+        return "OFFICIAL NAME: ${name.official}\nNATIVE NAME:\n${name.getNativeNames()}CAPITALS: $capitals\n" +
+                "CODE: $fifa\nPOPULATION: ${population.toString()}\nAREA: ${area.toString()}\nBORDERS:\n $bor\nLANGUAGES:\n $lang\n" +
+                "CURRENCIES:\n${curr}LATITUDE AND LONGITUDE: ${latlng[0].toString()}, ${latlng[1].toString()}\nIDD: ${idd.root}\nTIMEZONES:\n $zones\nCONTINENTS: $conts"
     }
 
 

@@ -3,10 +3,14 @@ package com.example.geoguess
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.example.geoguess.activities.CountryInfoFragment
 import com.example.geoguess.activities.CountryInfoViewModel
 import com.example.geoguess.databinding.FragmentGuessingBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class GuessingFragment : Fragment(R.layout.fragment_guessing) {
@@ -27,15 +31,24 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
 
-        binding.buttonStart.setOnClickListener { startQuiz() }
+        background()
 
+        binding.buttonStart.setOnClickListener { startQuiz() }
         binding.buttonTry.setOnClickListener { checkGuess() }
         binding.buttonEnd.setOnClickListener { endOfQuiz() }
+    }
+
+    private fun background() {
+        Glide.with(this)
+            .load("https://e0.pxfuel.com/wallpapers/284/1003/desktop-wallpaper-world-map-mint-green-iphone-map-world-map-aesthetic-world.jpg")
+            .into(binding.backgroundGuess)
     }
 
     private fun startQuiz() {
         hasStarted = true
         timeStart = System.nanoTime()
+        count = 0
+        binding.tvCorrectCount.text = "$count/${sharedViewModel.listOfCountries.value?.size}"
     }
 
     private fun endOfQuiz() {
@@ -46,8 +59,32 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
         guessedCountries.clear()
         binding.tvWrong.setBackgroundColor(Color.WHITE)
         binding.tvCorrect.setBackgroundColor(Color.WHITE)
-        binding.tvTime.text = "Time: ${(timeEnd - timeStart)/1000000000} seconds and count: $count"
-        count = 0
+        binding.searchedItem.setText("")
+        //var time = (timeEnd - timeStart)/1000000000
+        //binding.tvTime.text = "Time: $time seconds and count: $count"
+        showEndDialog()
+    }
+
+    private fun showEndDialog() {
+        val time = (timeEnd - timeStart)/1000000000
+        val min = time/60
+        val sec = time%60
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("CONGRATS!")
+            .setMessage("It took you $min minutes and $sec seconds to guess $count countries.")
+            .setCancelable(false)
+            .setNegativeButton("EXIT") { _, _ -> goToHomePage(CountryInfoFragment()) }
+            .setPositiveButton("TRY AGAIN") {_, _ -> startQuiz()}
+            .setBackground(ContextCompat.getDrawable(requireActivity(), R.drawable.dialog))
+            .show()
+
+    }
+
+    private fun goToHomePage(newFragment: Fragment) {
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
+        fragmentTransaction.commit()
     }
 
     private fun checkGuess() {
@@ -73,7 +110,5 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
             binding.tvCorrect.setBackgroundColor(Color.WHITE)
             binding.tvWrong.setBackgroundColor(Color.RED)
         }
-        //binding.searchedItem.setText("")
-        //binding.root.setBackgroundColor(Color.RED)
     }
 }
