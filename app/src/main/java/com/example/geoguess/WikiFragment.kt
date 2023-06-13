@@ -25,23 +25,31 @@ import com.bumptech.glide.Glide
 class WikiFragment : Fragment(R.layout.fragment_wiki) {
     private lateinit var binding: FragmentWikiBinding
 
-    private lateinit var sharedViewModel: CountryInfoViewModel
+    private val sharedViewModel: CountryInfoViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWikiBinding.bind(view)
 
-        sharedViewModel = ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
+        //sharedViewModel = ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
         binding.buttonSearch.setOnClickListener { show() }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-       // requireActivity().setContentView(R.layout.fragment_wiki)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("countryName", binding.searchedCountry.text.toString())
+        outState.putBoolean("notShowed", binding.tvCountryName.text.equals(""))
+    }
 
-        //requireActivity().setContentView(binding.root)
-        //binding.buttonSearch.setOnClickListener { spracuj() }
-
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState != null) {
+            binding.searchedCountry.setText(savedInstanceState.getString("countryName"))
+            if (!savedInstanceState.getBoolean("notShowed"))
+                show()
+        }
     }
 
     private fun show() {

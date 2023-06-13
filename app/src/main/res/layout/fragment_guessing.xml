@@ -29,6 +29,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="55sp"
+        android:layout_height="45sp"
+        android:background="@color/nocolor"
+        android:text="X"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/buttonTry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

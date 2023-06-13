@@ -3,6 +3,7 @@ package com.example.geoguess.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.geoguess.R
 import com.example.geoguess.databinding.ActivityHomePageBinding
@@ -32,18 +33,11 @@ class HomePageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomePageBinding.inflate(layoutInflater)
+        supportActionBar?.hide()
         setContentView(binding.root)
         //setContentView(R.layout.activity_home_page)
-        /*println(slovakia.toString())
-        println(slovakia.component2().component1())*/
-        //val skuska = slovakia.component10()
-        //binding.textViewName.text = skuska.toString()
+
         Log.i("HomePageActivity", "ON CREATE")
-
-        //binding.buttonInfo.setOnClickListener{ goToInfo(WikiFragment()) }
-        //binding.buttonGuess.setOnClickListener { goToQuiz(GuessingFragment()) }
-        //CountryApi.retrofitService.getProperties().get(0).flags.alt.toString()
-
     }
 
     override fun onStart() {

@@ -25,7 +25,7 @@ data class Country(val flags : Flags, val coatOfArms : CoatOfArms, val name : Na
 
         var curr = ""
         for ((key, value) in currencies) {
-            curr += (" ${value.getCurrency()} $key\n")
+            curr += (" ▹${value.getCurrency()} $key\n")
         }
 
         var zones = ""
@@ -33,14 +33,14 @@ data class Country(val flags : Flags, val coatOfArms : CoatOfArms, val name : Na
             zones += ("$z ")
         }
 
-        var conts = ""
+        var con = ""
         for (c in continents) {
-            conts += ("$c  ")
+            con += ("$c  ")
         }
 
-        return "OFFICIAL NAME: ${name.official}\nNATIVE NAME:\n${name.getNativeNames()}CAPITALS: $capitals\n" +
-                "CODE: $fifa\nPOPULATION: ${population.toString()}\nAREA: ${area.toString()}\nBORDERS:\n $bor\nLANGUAGES:\n $lang\n" +
-                "CURRENCIES:\n${curr}LATITUDE AND LONGITUDE: ${latlng[0].toString()}, ${latlng[1].toString()}\nIDD: ${idd.root}\nTIMEZONES:\n $zones\nCONTINENTS: $conts"
+        return "▶OFFICIAL NAME: ${name.official}\n▶NATIVE NAME:\n${name.getNativeNames()}▶CAPITALS: $capitals\n" +
+                "▶CODE: $fifa\n▶POPULATION: ${population.toString()}\n▶AREA: ${area.toString()} km²\n▶BORDERS:\n$bor\n▶LANGUAGES:\n$lang\n" +
+                "▶CURRENCIES:\n${curr}▶LATITUDE AND LONGITUDE: ${latlng[0].toString()}, ${latlng[1].toString()}\n▶IDD: ${idd.root}\n▶TIMEZONES:\n $zones\n▶CONTINENTS: $con"
     }
 
 

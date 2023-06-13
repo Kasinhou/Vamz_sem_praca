@@ -11,8 +11,8 @@ import com.example.geoguess.GuessingFragment
 import com.example.geoguess.R
 import com.example.geoguess.WikiFragment
 import com.example.geoguess.databinding.FragmentCountryInfoBinding
-import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
+import com.example.geoguess.Constants
 
 class CountryInfoFragment : Fragment() {
 
@@ -24,10 +24,6 @@ class CountryInfoFragment : Fragment() {
     private val sharedViewModel: CountryInfoViewModel by lazy {
         ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
     }
-
-   /* companion object {
-        fun newInstance() = CountryInfoFragment()
-    }*/
 
     /*override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,7 +66,7 @@ class CountryInfoFragment : Fragment() {
 
     private fun background() {
         Glide.with(this)
-            .load("https://e0.pxfuel.com/wallpapers/427/996/desktop-wallpaper-world-map-iphone-x-map-abstract.jpg")
+            .load(Constants.BACKGROUND_INFO_FRAGMENT)
             .into(binding.backgroundMap)
     }
 
