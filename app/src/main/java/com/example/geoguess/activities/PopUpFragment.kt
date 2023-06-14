@@ -23,7 +23,7 @@ class PopUpFragment : DialogFragment() {
     private var count: Int = 0
 
     /**
-     * Vytvorenie a vratenie instancie fragmentu s parametrami minuty, sekundy a poctu uhadnutych krajin
+     * Vytvorenie a vratenie instancie fragmentu s parametrami minuty, sekundy a poctu uhadnutych krajin konkretnej hry
      */
     companion object {
         fun instance(min: Long, sec: Long, count: Int) : PopUpFragment {

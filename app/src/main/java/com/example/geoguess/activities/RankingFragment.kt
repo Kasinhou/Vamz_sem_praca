@@ -45,24 +45,24 @@ class RankingFragment : Fragment() {
      * bud zoradene od najvacsieho poctu uhadnutych alebo od najnizsieho priemeru na jedno uhadnutie
      */
     private fun rankUsers(byAvg: Boolean) {
-        var data = Database(requireContext()).load()
-        var rankings: MutableMap<Double, String> = mutableMapOf()
-        var sortRanking: MutableMap<Double, String>
+        val data = Database(requireContext()).load()
+        val rankings: MutableMap<Double, String> = mutableMapOf()
+        val sortRanking: MutableMap<Double, String>
         var rankedUsers = ""
         var i = 1
 
         if (byAvg) {
             data.forEach { it ->
                 if (it.count == 0)
-                    rankings[1000.0] = "${it.user}, time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
+                    rankings[1000.0] = "${it.user}\n     time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
                 else
                     rankings[((it.sec + (it.min * 60.0)) / it.count)] =
-                        "${it.user}, time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
+                        "${it.user}\n     time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
             }
             sortRanking = rankings.toSortedMap()
         } else {
             data.forEach { it ->
-                rankings[it.count.toDouble()] = "${it.user}, time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
+                rankings[it.count.toDouble()] = "${it.user}\n     time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
             }
             sortRanking = rankings.toSortedMap(compareByDescending { it })
         }

@@ -31,7 +31,7 @@ class Database(var context: Context): SQLiteOpenHelper(context, Constants.DB_NAM
         attributes.put(Constants.COLUMN_SEC, sec)
         attributes.put(Constants.COLUMN_COUNT, count)
 
-        var test = database.insert(Constants.TABLE_NAME, null, attributes)
+        val test = database.insert(Constants.TABLE_NAME, null, attributes)
         if (test == (-1).toLong())
             Toast.makeText(context, "Insert was unsuccessful, name is already used.", Toast.LENGTH_SHORT).show()
         else
@@ -45,7 +45,7 @@ class Database(var context: Context): SQLiteOpenHelper(context, Constants.DB_NAM
      * Nacitanie vsetkych dat z databazy, ulozenie do zoznamu datovych tried Score
      */
     fun load() : MutableList<Score> {
-        var listOfScores : MutableList<Score> = mutableListOf()
+        val listOfScores : MutableList<Score> = mutableListOf()
         val database = readableDatabase
         val query = "SELECT * FROM ${Constants.TABLE_NAME}"
         val row = database.rawQuery(query, null)
