@@ -47,7 +47,7 @@ class PopUpFragment : DialogFragment() {
     }
 
     /**
-     * nastavenie reakcie na tlacidlo OK
+     * Nastavenie reakcie na tlacidlo OK
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

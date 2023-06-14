@@ -25,8 +25,8 @@ class HomePageActivity : AppCompatActivity() {
         Log.i("HomePageActivity", "ON CREATE")
     }
 
-    override fun onStart() {
+    /*override fun onStart() {
         super.onStart()
         Log.i("HomePageActivity", "ON START")
-    }
+    }*/
 }

@@ -34,7 +34,7 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     private var guessedCountries: MutableList<String> = mutableListOf()
 
     /**
-     * vytvorenie reakci na buttony, nastavenie pozadia
+     * Vytvorenie reakci na buttony, nastavenie pozadia
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +52,7 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     }
 
     /**
-     * ulozenie stavu fragmentu
+     * Ulozenie stavu fragmentu
      * pri otoceni obrazovky sa informacie nestratia
      */
     override fun onSaveInstanceState(outState: Bundle) {
@@ -67,7 +67,8 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     }
 
     /**
-     * pri znova vytvoreni pohladu, pri otoceni obrazovky sa nacitaju ulozene informacie a obnovi sa pohlad
+     * NAcitanie stavu
+     * pri otoceni obrazovky sa nacitaju ulozene informacie a obnovi sa pohlad
      */
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
@@ -100,6 +101,7 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     }
 
     /**
+     * Zaciatok kvizu
      * Ak kviz este nezacal, inicializuju sa hodnoty na pociatocne
      */
     private fun startQuiz() {
@@ -113,6 +115,7 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     }
 
     /**
+     * Ukoncenie kvizu
      * ak kviz zacal, UX sa nastavi na neutralne hodnoty a zavola sa dialogove okno
      */
     private fun endOfQuiz() {
@@ -128,7 +131,7 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     }
 
     /**
-     * zobrazi sa okno s informaciami o case kvizu a pocte uhadnutych krajin
+     * Zobrazi sa okno s informaciami o case kvizu a pocte uhadnutych krajin
      * pouzivatel ma moznost skoncit alebo zacat kviz od zaciatku
      */
     private fun showEndDialog() {
@@ -155,7 +158,7 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     }
 
     /**
-     * ulozi sa skore a prejde sa na zaciatocny fragment, domovsku obrazovku
+     * Ulozi sa skore a prejde sa na zaciatocny fragment, domovsku obrazovku
      */
     private fun goToHomePage(newFragment: Fragment, min: Long, sec: Long) {
         saveScore(min, sec)
@@ -174,7 +177,7 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     }
 
     /**
-     * kontrola spravnosti zadaneho nazvu krajiny a nasledne oznamenie pouzivatelovi podla vysledku
+     * Kontrola spravnosti zadaneho nazvu krajiny a nasledne oznamenie pouzivatelovi podla vysledku
      * bud sa pripocitaju body a rozsvieti sa napis correct alebo sa rozsvieti napis wrong
      * ak krajina existuje, prida sa do zoznamu uhadnutych krajin
      */

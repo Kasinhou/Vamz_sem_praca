@@ -7,14 +7,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
 /**
- * vytvorenie moshi objektu
+ * Vytvorenie moshi objektu
  */
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
 /**
- * konvertovanie json suboru z url adresy pomocou moshi na kotlin objekty
+ * Konvertovanie json suboru z url adresy pomocou moshi na kotlin objekty
  */
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -31,7 +31,7 @@ interface CountryApiService {
 }
 
 /**
- * inicializovanie CountrzApiService na ziskanie konecneho zoznamu krajin
+ * Inicializovanie CountrzApiService na ziskanie konecneho zoznamu krajin
  */
 object CountryApi {
     val retrofitService : CountryApiService by lazy {

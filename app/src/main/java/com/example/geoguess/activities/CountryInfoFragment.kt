@@ -61,8 +61,7 @@ class CountryInfoFragment : Fragment() {
     }
 
     /**
-     * presun na novy fragment zadany ako parameter
-     * pridanie do stacku, pri stlaceni tlacidla spat sa objavi fragment ktory bol pred novym
+     * Presun na novy fragment zadany ako parameter
      */
     private fun goToNewFragment(newFragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager

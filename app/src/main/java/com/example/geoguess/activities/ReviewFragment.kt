@@ -20,7 +20,7 @@ class ReviewFragment : Fragment() {
     }
 
     /**
-     * vytvorenie
+     *
      */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +31,7 @@ class ReviewFragment : Fragment() {
     }
 
     /**
-     * pri vytvoreni pohladu sa zavola funkcia na zobrazenie krajin
+     * Pri vytvoreni pohladu sa zavola funkcia na zobrazenie krajin
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +41,7 @@ class ReviewFragment : Fragment() {
     }
 
     /**
-     * zoradenie vsetkych krajin abecedne a vypisanie na obrazovku
+     * Zoradenie vsetkych krajin abecedne a vypisanie na obrazovku
      */
     private fun showEverything() {
         val names: MutableList<String> = mutableListOf()

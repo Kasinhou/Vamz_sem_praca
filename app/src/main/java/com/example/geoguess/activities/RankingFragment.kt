@@ -28,7 +28,7 @@ class RankingFragment : Fragment() {
     }
 
     /**
-     * nastavenie reakcie na buttony
+     * Nastavenie reakcie na buttony
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -76,7 +76,7 @@ class RankingFragment : Fragment() {
     }
 
     /**
-     * ulozenie poradia kvoli rotacii zariadenia
+     * Ulozenie poradia kvoli rotacii zariadenia
      */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -84,7 +84,7 @@ class RankingFragment : Fragment() {
     }
 
     /**
-     * nacitanie poradia a vypisanie po opatovnom vytvoreni pohladu, pri rotacii
+     * Nacitanie poradia a vypisanie po opatovnom vytvoreni pohladu, pri rotacii
      */
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)

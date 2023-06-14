@@ -20,7 +20,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     }
 
     /**
-     * vytvorenie reakcie na buttony
+     * Vytvorenie reakcie na buttony
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,7 +35,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     }
 
     /**
-     * vycistenie informacii a obrazkov z fragmentu
+     * Vycistenie informacii a obrazkov z fragmentu
      */
     private fun clearInfo() {
         binding.tvCountryName.text = ""
@@ -67,7 +67,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     }
 
     /**
-     * zobrazenie vsetkych informacii krajiny ak jej nazov bol zadany spravne
+     * Zobrazenie vsetkych informacii krajiny ak jej nazov bol zadany spravne
      */
     private fun show() {
         val text = binding.searchedCountry.text.toString().lowercase().trimEnd().trimStart()
@@ -83,7 +83,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     }
 
     /**
-     * zobrazenie obrazkov cez url adresu do konkretnych imageViews
+     * Zobrazenie obrazkov cez url adresu do konkretnych imageViews
      */
     private fun showImages(name: String) {
         val flagUrl = sharedViewModel.getCountry(name)?.flags?.png.toString()
