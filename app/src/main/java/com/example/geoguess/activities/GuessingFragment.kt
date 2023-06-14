@@ -1,6 +1,5 @@
-package com.example.geoguess
+package com.example.geoguess.activities
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -10,8 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.geoguess.activities.CountryInfoFragment
-import com.example.geoguess.activities.CountryInfoViewModel
+import com.example.geoguess.data.Constants
+import com.example.geoguess.R
 import com.example.geoguess.databinding.FragmentGuessingBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.ArrayList
@@ -67,7 +66,7 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
             binding.tvCorrectCount.text = "$count/${sharedViewModel.listOfCountries.value?.size}"
             guessedCountries = savedInstanceState.getStringArrayList("guessedCountries")?.toMutableList() ?: mutableListOf()
             binding.tvCorrect.setTextColor(savedInstanceState.getInt("colorCorrect"))
-            binding.tvWrong.setTextColor(savedInstanceState.getInt("coloWrong"))
+            binding.tvWrong.setTextColor(savedInstanceState.getInt("colorWrong"))
         }
     }
 

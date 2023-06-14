@@ -10,13 +10,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".WikiFragment">
+        tools:context=".activities.WikiFragment">
 
         <EditText
             android:id="@+id/searchedCountry"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Country"
+            android:hint="@string/country"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,8 +26,8 @@
             android:id="@+id/buttonClearInfo"
             android:layout_width="55sp"
             android:layout_height="45sp"
-            android:background="@color/nocolor"
-            android:text="X"
+            android:background="@color/no_color"
+            android:text="@string/x2"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -38,7 +38,7 @@
             android:id="@+id/buttonSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SEARCH"
+            android:text="@string/search"
             app:layout_constraintTop_toBottomOf="@id/buttonClearInfo"
             app:layout_constraintBottom_toTopOf="@id/ivCoA"
             app:layout_constraintEnd_toEndOf="parent" />

@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:padding="16sp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PopUpFragment">
+    tools:context=".activities.PopUpFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvMessage"
-        android:text="Write name to save your score."
+        android:text="@string/name_message"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,15 +22,16 @@
         android:id="@+id/nameToSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="@string/name"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMessage" />
 
     <Button
         android:id="@+id/btnOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OK"
+        android:text="@string/ok"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

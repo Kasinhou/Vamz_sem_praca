@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.example.geoguess.databinding.FragmentCountryInfoBinding
 import com.bumptech.glide.Glide
 import com.example.geoguess.*
+import com.example.geoguess.data.Constants
 
 class CountryInfoFragment : Fragment() {
 
@@ -51,10 +52,10 @@ class CountryInfoFragment : Fragment() {
         //setHasOptionsMenu(true)
         background()
 
-        binding.buttonGuess.setOnClickListener { goToQuiz(GuessingFragment()) }
-        binding.buttonInfo.setOnClickListener { goToInfo(WikiFragment()) }
-        binding.btnShowEverything.setOnClickListener { showEveryCountry(ReviewFragment()) }
-        binding.btnRank.setOnClickListener { goToRankings(RankingFragment()) }
+        binding.buttonGuess.setOnClickListener { goToNewFragment(GuessingFragment()) }
+        binding.buttonInfo.setOnClickListener { goToNewFragment(WikiFragment()) }
+        binding.btnShowEverything.setOnClickListener { goToNewFragment(ReviewFragment()) }
+        binding.btnRank.setOnClickListener { goToNewFragment(RankingFragment()) }
         return binding.root
     }
 
@@ -69,45 +70,11 @@ class CountryInfoFragment : Fragment() {
             .into(binding.backgroundMap)
     }
 
-    private fun showEveryCountry(newFragment: Fragment) {
+    private fun goToNewFragment(newFragment: Fragment) {
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
-
-    private fun goToRankings(newFragment: Fragment) {
-        val fragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
-    }
-
-    private fun goToInfo(newFragment: Fragment) {
-        val fragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
-    }
-
-    private fun goToQuiz(newFragment: Fragment) {
-        val fragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainFragmentContainerView, newFragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
-    }
-
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CountryInfoViewModel::class.java)
-        // TODO: Use the ViewModel
-    }*/
-
-    /*fun getList(): LiveData<List<Country>> {
-        return viewModel.listOfCountries
-    }*/
 }

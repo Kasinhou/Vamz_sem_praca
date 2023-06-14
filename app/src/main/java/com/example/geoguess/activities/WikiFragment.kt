@@ -1,22 +1,13 @@
-package com.example.geoguess
+package com.example.geoguess.activities
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.example.geoguess.activities.CountryInfoViewModel
-import com.example.geoguess.databinding.FragmentCountryInfoBinding
 import com.example.geoguess.databinding.FragmentWikiBinding
-import java.util.concurrent.Executors
 import com.bumptech.glide.Glide
+import com.example.geoguess.R
 
 /**
  * A simple [Fragment] subclass.
@@ -65,7 +56,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     }
 
     private fun show() {
-        val text = binding.searchedCountry.text.toString().lowercase().trimEnd()
+        val text = binding.searchedCountry.text.toString().lowercase().trimEnd().trimStart()
 
         if (sharedViewModel.getCountry(text) != null) {
             showImages(text)
@@ -98,34 +89,4 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
             .into(binding.ivCoA)
 
     }
-
-
-
-    /*override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wiki, container, false)
-    }
-
-    companion object {
-        *//**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment WikiFragment.
-         *//*
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            WikiFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }*/
 }

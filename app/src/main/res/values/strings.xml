@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">GeoGuess</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="geoguess">GeoGuess</string>
+    <string name="info">INFO</string>
+    <string name="guess">GUESS</string>
+    <string name="all">ALL</string>
+    <string name="ranking">RANKING</string>
+    <string name="guess_edit">Guess</string>
+    <string name="x">X</string>
+    <string name="trying">TRY</string>
+    <string name="end_quiz">END QUIZ</string>
+    <string name="start_quiz">START QUIZ</string>
+    <string name="correct">CORRECT</string>
+    <string name="wrong">WRONG</string>
+    <string name="name_message">Write name to save your score.</string>
+    <string name="name">Name</string>
+    <string name="ok">OK</string>
+    <string name="overall_ranking">OVERALL RANKING</string>
+    <string name="max_guessed">Max guessed</string>
+    <string name="average_guessed">Average guessed</string>
+    <string name="country">Country</string>
+    <string name="x2">X</string>
+    <string name="search">SEARCH</string>
 </resources>

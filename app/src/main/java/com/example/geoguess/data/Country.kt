@@ -1,12 +1,18 @@
 package com.example.geoguess.data
 
-
+/**
+ * Data trieda jednej krajiny obshaujuca vsetky informacie o krajine
+ * Vytvorena na citanie JSON suboru
+ */
 data class Country(val flags : Flags, val coatOfArms : CoatOfArms, val name : Name, val currencies : Map<String, Currency>,
                    val idd : Idd, val capital : List<String>, val languages : Map<String, String>,
                    val latlng : List<Double>, val borders : List<String>,
                    val area : Double, val maps : Maps, val population : Int,
                    val fifa : String, val timezones : List<String>, val continents : List<String>) {
 
+    /**
+     * Textova reprezentacia informacii o krajine
+     */
     fun showInfo(): String {
         var capitals = ""
         for (n in capital) {
@@ -42,6 +48,4 @@ data class Country(val flags : Flags, val coatOfArms : CoatOfArms, val name : Na
                 "▶CODE: $fifa\n▶POPULATION: ${population.toString()}\n▶AREA: ${area.toString()} km²\n▶BORDERS:\n$bor\n▶LANGUAGES:\n$lang\n" +
                 "▶CURRENCIES:\n${curr}▶LATITUDE AND LONGITUDE: ${latlng[0].toString()}, ${latlng[1].toString()}\n▶IDD: ${idd.root}\n▶TIMEZONES:\n $zones\n▶CONTINENTS: $con"
     }
-
-
 }

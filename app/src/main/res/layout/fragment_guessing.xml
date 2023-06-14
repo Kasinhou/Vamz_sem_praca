@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".GuessingFragment">
+        tools:context=".activities.GuessingFragment">
 
         <ImageView
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:id="@+id/searchedItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Guess"
+            android:hint="@string/guess_edit"
             android:textSize="25sp"
             android:typeface="serif"
             android:background="@color/light_blue"
@@ -36,8 +36,8 @@
             android:id="@+id/buttonClear"
             android:layout_width="55sp"
             android:layout_height="45sp"
-            android:background="@color/nocolor"
-            android:text="X"
+            android:background="@color/no_color"
+            android:text="@string/x"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -48,7 +48,7 @@
             android:id="@+id/buttonTry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TRY"
+            android:text="@string/trying"
             android:textStyle="bold"
             android:typeface="serif"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
             android:id="@+id/buttonEnd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="END QUIZ"
+            android:text="@string/end_quiz"
             android:textStyle="bold"
             android:typeface="serif"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
             android:id="@+id/buttonStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="START QUIZ"
+            android:text="@string/start_quiz"
             android:textStyle="bold"
             android:typeface="serif"
             app:layout_constraintStart_toEndOf="@id/buttonEnd"
@@ -79,7 +79,7 @@
             android:id="@+id/tvCorrect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CORRECT"
+            android:text="@string/correct"
             android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="serif"
@@ -92,7 +92,7 @@
             android:id="@+id/tvWrong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WRONG"
+            android:text="@string/wrong"
             android:textSize="30sp"
             android:textStyle="bold"
             android:typeface="serif"
@@ -113,15 +113,6 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCorrect" />
-
-       <!-- <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvTime"
-            android:typeface="serif"
-            app:layout_constraintTop_toBottomOf="@id/buttonStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

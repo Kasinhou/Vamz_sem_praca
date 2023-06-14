@@ -1,10 +1,12 @@
-package com.example.geoguess
+package com.example.geoguess.activities
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.geoguess.data.Database
+import com.example.geoguess.R
 import com.example.geoguess.databinding.FragmentRankingBinding
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -37,8 +39,11 @@ class RankingFragment : Fragment() {
 
         if (byAvg) {
             data.forEach { it ->
-                rankings[((((it.sec / 60.0) * 100 + it.min) / it.count) / 100) * 60] =
-                    "${it.user}, time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
+                if (it.count == 0)
+                    rankings[1000.0] = "${it.user}, time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
+                else
+                    rankings[((((it.sec / 60.0) * 100 + it.min) / it.count) / 100) * 60] =
+                        "${it.user}, time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
             }
             sortRanking = rankings.toSortedMap()
         } else {
@@ -49,7 +54,7 @@ class RankingFragment : Fragment() {
         }
 
         for ((key, value) in sortRanking) {
-            rankedUsers += "$i. $value, ratio: ${BigDecimal(key).setScale(2, RoundingMode.HALF_UP).toDouble()}\n"
+            rankedUsers += "$i. $value, ratio: ${BigDecimal(key).setScale(2, RoundingMode.CEILING).toDouble()}\n"
             ++i
         }
 

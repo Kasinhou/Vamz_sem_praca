@@ -1,4 +1,4 @@
-package com.example.geoguess
+package com.example.geoguess.activities
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.geoguess.activities.CountryInfoViewModel
+import com.example.geoguess.R
 import com.example.geoguess.databinding.FragmentReviewBinding
 
 /**

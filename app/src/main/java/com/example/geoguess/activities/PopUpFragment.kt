@@ -1,12 +1,14 @@
-package com.example.geoguess
+package com.example.geoguess.activities
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import com.example.geoguess.activities.CountryInfoFragment
+import com.example.geoguess.data.Database
+import com.example.geoguess.R
 import com.example.geoguess.databinding.FragmentPopUpBinding
 
 
@@ -49,10 +51,12 @@ class PopUpFragment : DialogFragment() {
     }
 
     private fun saveScore() {
-        if (binding.nameToSave.text == null)
+        if (binding.nameToSave.text == null || binding.nameToSave.text.equals(""))
             return
 
-        Database(requireContext()).insertN(binding.nameToSave.text.toString(), minutes.toInt(), seconds.toInt(), count)
+        if (Database(requireContext()).insertN(binding.nameToSave.text.toString(), minutes.toInt(), seconds.toInt(), count).toInt() == -1) {
+            instance(minutes, seconds, count).show((activity as AppCompatActivity).supportFragmentManager, "Pop Up Window")
+        }
         dismiss()
     }
 }

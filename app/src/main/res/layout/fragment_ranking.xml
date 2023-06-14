@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#01091B"
-    tools:context=".RankingFragment">
+    tools:context=".activities.RankingFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/tvFirstRowRanking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OVERALL RANKING"
+            android:text="@string/overall_ranking"
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -45,8 +45,8 @@
             android:id="@+id/btnMaxCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/nocolor"
-            android:text="Max guessed"
+            android:background="@color/no_color"
+            android:text="@string/max_guessed"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:typeface="serif"
@@ -59,8 +59,8 @@
             android:id="@+id/btnAvgGuessed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/nocolor"
-            android:text="Average guessed"
+            android:background="@color/no_color"
+            android:text="@string/average_guessed"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:typeface="serif"
