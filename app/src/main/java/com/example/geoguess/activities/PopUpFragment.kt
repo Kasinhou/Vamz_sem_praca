@@ -71,4 +71,27 @@ class PopUpFragment : DialogFragment() {
         }
         dismiss()
     }
+
+    /**
+     * Ulozenie stavu fragmentu
+     */
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putLong("min", minutes)
+        outState.putLong("sec", seconds)
+        outState.putInt("count", count)
+    }
+
+    /**
+     * Nacitanie stavu po otoceni zariadenia
+     */
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if (savedInstanceState != null) {
+            savedInstanceState.getLong("min", minutes)
+            savedInstanceState.getLong("sec", seconds)
+            savedInstanceState.getInt("count", count)
+            instance(minutes, seconds, count).show((activity as AppCompatActivity).supportFragmentManager, "Pop Up Window")
+        }
+    }
 }

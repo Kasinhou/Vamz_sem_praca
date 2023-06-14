@@ -45,7 +45,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     }
 
     /**
-     * ulozenie stavu fragmentu
+     * Ulozenie stavu fragmentu
      */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -54,6 +54,7 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
     }
 
     /**
+     * Nacitanie stavu po opatovnom vytvoreni pohladu
      * pri rotacii zariadenia sa stav nezmeni, zobrazenie zostane rovnake
      */
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

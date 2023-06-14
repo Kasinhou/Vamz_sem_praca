@@ -11,7 +11,7 @@ data class Country(val flags : Flags, val coatOfArms : CoatOfArms, val name : Na
                    val fifa : String, val timezones : List<String>, val continents : List<String>) {
 
     /**
-     * Textova reprezentacia informacii o krajine
+     * Vrati textovu reprezentaciu informacii o krajine
      */
     fun showInfo(): String {
         var capitals = ""
