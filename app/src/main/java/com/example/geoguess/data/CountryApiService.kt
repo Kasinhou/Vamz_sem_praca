@@ -6,24 +6,33 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-//private const val BASE_URL_ADDRESS = "https://restcountries.com/v3.1/"
-
+/**
+ * vytvorenie moshi objektu
+ */
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
+/**
+ * konvertovanie json suboru z url adresy pomocou moshi na kotlin objekty
+ */
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(Constants.BASE_URL_ADDRESS)
     .build()
 
+/**
+ * Vratenie vysledneho zoznamu krajin
+ */
 interface CountryApiService {
     @GET(Constants.ADD_URL_ADDRESS)
-    //@GET("all?fields=name,currencies,idd,capital,languages,latlng,borders,area,maps,population,fifa,timezones,continents,flags,coatOfArms")
     suspend fun getProperties():
             List<Country>
 }
 
+/**
+ * inicializovanie CountrzApiService na ziskanie konecneho zoznamu krajin
+ */
 object CountryApi {
     val retrofitService : CountryApiService by lazy {
         retrofit.create(CountryApiService::class.java) }

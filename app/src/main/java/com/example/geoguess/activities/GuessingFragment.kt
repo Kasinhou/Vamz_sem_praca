@@ -15,7 +15,10 @@ import com.example.geoguess.databinding.FragmentGuessingBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.ArrayList
 
-
+/**
+ * Fragment, ktory sa stara o kviz
+ * Uchovava informacie o pocte uhadnutych, stopuje cas uzivatelovi
+ */
 class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     private lateinit var binding: FragmentGuessingBinding
 
@@ -30,6 +33,9 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
     private var hasStarted : Boolean = false
     private var guessedCountries: MutableList<String> = mutableListOf()
 
+    /**
+     * vytvorenie reakci na buttony, nastavenie pozadia
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentGuessingBinding.bind(view)
@@ -45,6 +51,10 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
         binding.buttonClear.setOnClickListener { clearText() }
     }
 
+    /**
+     * ulozenie stavu fragmentu
+     * pri otoceni obrazovky sa informacie nestratia
+     */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt("count", count)
@@ -56,6 +66,9 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
         outState.putInt("colorWrong", binding.tvWrong.currentTextColor)
     }
 
+    /**
+     * pri znova vytvoreni pohladu, pri otoceni obrazovky sa nacitaju ulozene informacie a obnovi sa pohlad
+     */
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if (savedInstanceState != null) {
@@ -70,16 +83,25 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
         }
     }
 
+    /**
+     * Vymaze sa cely text
+     */
     private fun clearText() {
         binding.searchedItem.setText("")
     }
 
+    /**
+     * Nastavi sa pozadie obrazovky pomocou obrazku z url adresy
+     */
     private fun background() {
         Glide.with(this)
             .load(Constants.BACKGROUND_GUESSING_FRAGMENT)
             .into(binding.backgroundGuess)
     }
 
+    /**
+     * Ak kviz este nezacal, inicializuju sa hodnoty na pociatocne
+     */
     private fun startQuiz() {
         if (!hasStarted) {
             Toast.makeText(requireContext(), "Quiz starts. Good luck", Toast.LENGTH_SHORT).show()
@@ -90,6 +112,9 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
         }
     }
 
+    /**
+     * ak kviz zacal, UX sa nastavi na neutralne hodnoty a zavola sa dialogove okno
+     */
     private fun endOfQuiz() {
         if (!hasStarted)
             return
@@ -102,6 +127,10 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
         showEndDialog()
     }
 
+    /**
+     * zobrazi sa okno s informaciami o case kvizu a pocte uhadnutych krajin
+     * pouzivatel ma moznost skoncit alebo zacat kviz od zaciatku
+     */
     private fun showEndDialog() {
         val time = (timeEnd - timeStart)/1000000000
         val min = time/60
@@ -117,11 +146,17 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
 
     }
 
+    /**
+     * Ulozi sa skore a kviz zacne od zaciatku
+     */
     private fun tryAgain(min: Long, sec: Long) {
         saveScore(min, sec)
         startQuiz()
     }
 
+    /**
+     * ulozi sa skore a prejde sa na zaciatocny fragment, domovsku obrazovku
+     */
     private fun goToHomePage(newFragment: Fragment, min: Long, sec: Long) {
         saveScore(min, sec)
         val fragmentManager = requireActivity().supportFragmentManager
@@ -130,11 +165,19 @@ class GuessingFragment : Fragment(R.layout.fragment_guessing) {
         fragmentTransaction.commit()
     }
 
+    /**
+     * Vyskocenie okna s moznostou zadania mena na ulozenie vysledkov
+     */
     private fun saveScore(min: Long, sec: Long) {
         val popUpWindow = PopUpFragment.instance(min, sec, count)
         popUpWindow.show((activity as AppCompatActivity).supportFragmentManager, "Pop Up Window")
     }
 
+    /**
+     * kontrola spravnosti zadaneho nazvu krajiny a nasledne oznamenie pouzivatelovi podla vysledku
+     * bud sa pripocitaju body a rozsvieti sa napis correct alebo sa rozsvieti napis wrong
+     * ak krajina existuje, prida sa do zoznamu uhadnutych krajin
+     */
     private fun checkGuess() {
         if (!hasStarted) {
             Toast.makeText(requireContext(), "Quiz has not started yet!", Toast.LENGTH_LONG).show()

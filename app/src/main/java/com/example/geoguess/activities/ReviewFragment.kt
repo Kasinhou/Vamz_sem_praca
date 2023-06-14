@@ -10,9 +10,7 @@ import com.example.geoguess.R
 import com.example.geoguess.databinding.FragmentReviewBinding
 
 /**
- * A simple [Fragment] subclass.
- * Use the [ReviewFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment na vyobrazenie vsetkych krajin spolu s hlavnymi mestami
  */
 class ReviewFragment : Fragment() {
     private lateinit var binding: FragmentReviewBinding
@@ -21,6 +19,9 @@ class ReviewFragment : Fragment() {
         ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
     }
 
+    /**
+     * vytvorenie
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +30,9 @@ class ReviewFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_review, container, false)
     }
 
+    /**
+     * pri vytvoreni pohladu sa zavola funkcia na zobrazenie krajin
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentReviewBinding.bind(view)
@@ -36,6 +40,9 @@ class ReviewFragment : Fragment() {
         showEverything()
     }
 
+    /**
+     * zoradenie vsetkych krajin abecedne a vypisanie na obrazovku
+     */
     private fun showEverything() {
         val names: MutableList<String> = mutableListOf()
         var textCountries = ""

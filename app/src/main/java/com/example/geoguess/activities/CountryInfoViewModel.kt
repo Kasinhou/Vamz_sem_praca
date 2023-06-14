@@ -9,11 +9,12 @@ import com.example.geoguess.data.Country
 import com.example.geoguess.data.CountryApi
 import kotlinx.coroutines.launch
 
+/**
+ * zdielany viewmodel, ktory uchovava informacie o vsetkych krajinach ako aj odpoved ci sa ich podarilo uspesne nacitat
+ */
 class CountryInfoViewModel : ViewModel() {
-    // The internal MutableLiveData String that stores the most recent response
     private val _response = MutableLiveData<String>()
 
-    // The external immutable LiveData for the response String
     val response: LiveData<String>
         get() = _response
 
@@ -24,23 +25,28 @@ class CountryInfoViewModel : ViewModel() {
 
 
     /**
-     * Call getCountriesProperties() on init so we can display status immediately.
+     * V konstruktore je vypis informacie ze sa viewmodel vytvoril
      */
     init {
-        //getCountriesProperties()
         Log.i("COUNTRYINFOVIEWMODEL", "CountryInfoViewModel created!")
     }
 
+    /**
+     * Informacia o zaniknuti viewmodelu
+     */
     override fun onCleared() {
         super.onCleared()
         Log.i("CountryInfoViewModel", "CountryInfoViewModel destroyed!")
     }
 
+    /**
+     * Funkcia asynchroone (pomocou korutin) nacita krajiny ako MutableLiveData
+     * Ak neuspesne, priradi do odpovede chybovu hlasku
+     */
     fun getCountriesProperties() {
         viewModelScope.launch {
             try {
                 _listOfCountries.value = CountryApi.retrofitService.getProperties()
-                //_countries = CountryApi.retrofitService.getProperties()
                 _response.value = "EVERYTHING IS OK :)"
             } catch (e: Exception) {
                 _response.value = "FAILURE: ${e.message} \nIT IS NOT POSSIBLE TO PLAY!"
@@ -48,13 +54,10 @@ class CountryInfoViewModel : ViewModel() {
         }
     }
 
+    /**
+     * Vrati krajinu na zaklade zadaneho bezneho nazvu krajiny
+     */
     fun getCountry(inputCountry: String = ""): Country? {
-        /* val country = _listOfCountries.value?.find { it.name.official == inputCountry }
-        return if (country == null) {
-            _listOfCountries.value?.get(0)
-        } else {
-            country
-        }*/
         return _listOfCountries.value?.find { it.name.common.lowercase() == inputCountry }
     }
 

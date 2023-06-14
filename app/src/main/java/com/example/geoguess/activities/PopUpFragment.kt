@@ -13,9 +13,7 @@ import com.example.geoguess.databinding.FragmentPopUpBinding
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [PopUpFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment na ulozenie skore podla zadaneho mena
  */
 class PopUpFragment : DialogFragment() {
     private lateinit var binding: FragmentPopUpBinding
@@ -24,6 +22,9 @@ class PopUpFragment : DialogFragment() {
     private var seconds: Long = 0
     private var count: Int = 0
 
+    /**
+     * Vytvorenie a vratenie instancie fragmentu s parametrami minuty, sekundy a poctu uhadnutych krajin
+     */
     companion object {
         fun instance(min: Long, sec: Long, count: Int) : PopUpFragment {
             val newFragment = PopUpFragment()
@@ -34,6 +35,9 @@ class PopUpFragment : DialogFragment() {
         }
     }
 
+    /**
+     * vytvorenie pohladu
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +46,9 @@ class PopUpFragment : DialogFragment() {
         return inflater.inflate(R.layout.fragment_pop_up, container, false)
     }
 
+    /**
+     * nastavenie reakcie na tlacidlo OK
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPopUpBinding.bind(view)
@@ -50,6 +57,11 @@ class PopUpFragment : DialogFragment() {
 
     }
 
+    /**
+     * Ak je zadane meno, do lokalnej databazy sa vlozia atributy konkretneho skore
+     * V pripade mena ktore uz je v databaze ulozene sa PopupFragment ukaze znova
+     * po uspesnom insertnuti fragment zmizne
+     */
     private fun saveScore() {
         if (binding.nameToSave.text == null || binding.nameToSave.text.equals(""))
             return

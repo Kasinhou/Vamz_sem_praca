@@ -10,9 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.geoguess.R
 
 /**
- * A simple [Fragment] subclass.
- * Use the [WikiFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment ktory ma na starosti spristupnovat informacie o zadanej krajine
  */
 class WikiFragment : Fragment(R.layout.fragment_wiki) {
     private lateinit var binding: FragmentWikiBinding
@@ -21,6 +19,9 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
         ViewModelProvider(requireActivity()).get(CountryInfoViewModel::class.java)
     }
 
+    /**
+     * vytvorenie reakcie na buttony
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentWikiBinding.bind(view)
@@ -33,6 +34,9 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
         }
     }
 
+    /**
+     * vycistenie informacii a obrazkov z fragmentu
+     */
     private fun clearInfo() {
         binding.tvCountryName.text = ""
         binding.tvInfoAboutCountry.text = ""
@@ -40,12 +44,18 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
         binding.ivFlag.visibility = View.GONE
     }
 
+    /**
+     * ulozenie stavu fragmentu
+     */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("countryName", binding.searchedCountry.text.toString())
         outState.putBoolean("notShowed", binding.tvCountryName.text.equals(""))
     }
 
+    /**
+     * pri rotacii zariadenia sa stav nezmeni, zobrazenie zostane rovnake
+     */
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if (savedInstanceState != null) {
@@ -55,6 +65,9 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
         }
     }
 
+    /**
+     * zobrazenie vsetkych informacii krajiny ak jej nazov bol zadany spravne
+     */
     private fun show() {
         val text = binding.searchedCountry.text.toString().lowercase().trimEnd().trimStart()
 
@@ -66,10 +79,11 @@ class WikiFragment : Fragment(R.layout.fragment_wiki) {
             Toast.makeText(requireContext(), "Wrong name of country.\nTry again.", Toast.LENGTH_SHORT).show()
             clearInfo()
         }
-
-        //binding.tvInfoAboutCountry.text = sharedViewModel.listOfCountries.value?.get(100)?.showInfo()
     }
 
+    /**
+     * zobrazenie obrazkov cez url adresu do konkretnych imageViews
+     */
     private fun showImages(name: String) {
         val flagUrl = sharedViewModel.getCountry(name)?.flags?.png.toString()
         val coaUrl = sharedViewModel.getCountry(name)?.coatOfArms?.png.toString()

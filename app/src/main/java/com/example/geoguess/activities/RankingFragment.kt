@@ -11,17 +11,25 @@ import com.example.geoguess.databinding.FragmentRankingBinding
 import java.math.BigDecimal
 import java.math.RoundingMode
 
+/**
+ * Fragment na celkove hodnotenie kvizu s moznostou nastavenia podla coho sa utriedi
+ */
 class RankingFragment : Fragment() {
     private lateinit var binding: FragmentRankingBinding
 
+    /**
+     * vytvorenie pohladu
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ranking, container, false)
     }
 
+    /**
+     * nastavenie reakcie na buttony
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRankingBinding.bind(view)
@@ -30,10 +38,16 @@ class RankingFragment : Fragment() {
         binding.btnMaxCount.setOnClickListener { rankUsers(false) }
     }
 
+    /**
+     * Nacitanie dat z databazy a pracovanie s nimi
+     * Zoradenie a vypisanie celkoveho poradia
+     * podla parametra
+     * bud zoradene od najvacsieho poctu uhadnutych alebo od najnizsieho priemeru na jedno uhadnutie
+     */
     private fun rankUsers(byAvg: Boolean) {
         var data = Database(requireContext()).load()
         var rankings: MutableMap<Double, String> = mutableMapOf()
-        var sortRanking: MutableMap<Double, String> = mutableMapOf()
+        var sortRanking: MutableMap<Double, String>
         var rankedUsers = ""
         var i = 1
 
@@ -42,7 +56,7 @@ class RankingFragment : Fragment() {
                 if (it.count == 0)
                     rankings[1000.0] = "${it.user}, time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
                 else
-                    rankings[((((it.sec / 60.0) * 100 + it.min) / it.count) / 100) * 60] =
+                    rankings[((it.sec + (it.min * 60.0)) / it.count)] =
                         "${it.user}, time: ${it.min}min and ${it.sec}sec, guessed: ${it.count}"
             }
             sortRanking = rankings.toSortedMap()
@@ -61,11 +75,17 @@ class RankingFragment : Fragment() {
         binding.tvRanking.text = rankedUsers
     }
 
+    /**
+     * ulozenie poradia kvoli rotacii zariadenia
+     */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("ranks", binding.tvRanking.text.toString())
     }
 
+    /**
+     * nacitanie poradia a vypisanie po opatovnom vytvoreni pohladu, pri rotacii
+     */
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if (savedInstanceState != null)
